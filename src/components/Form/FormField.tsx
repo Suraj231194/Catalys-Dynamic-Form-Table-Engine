@@ -157,27 +157,29 @@ export function FormField({
 
       case 'checkbox':
         return (
-          <label htmlFor={fieldId} className="inline-flex items-center gap-3 cursor-pointer group select-none">
-            <button
-              id={fieldId}
-              type="button"
-              role="switch"
-              aria-checked={Boolean(value)}
-              onClick={() => onChange(field.name, !value)}
-              className={`relative w-12 h-7 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:ring-offset-0 ${
-                Boolean(value) ? 'bg-primary-500 shadow-sm shadow-primary-500/20' : 'bg-surface-200 dark:bg-surface-700'
-              }`}
-            >
-              <span
-                className={`absolute top-1 left-1 w-5 h-5 rounded-full bg-white shadow-md transition-transform duration-200 ${
-                  Boolean(value) ? 'translate-x-5' : 'translate-x-0'
+          <div className={`${inputBase} flex items-center h-[50px] !py-0`}>
+            <label htmlFor={fieldId} className="inline-flex items-center gap-3 cursor-pointer group select-none">
+              <button
+                id={fieldId}
+                type="button"
+                role="switch"
+                aria-checked={Boolean(value)}
+                onClick={() => onChange(field.name, !value)}
+                className={`relative w-12 h-6 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:ring-offset-0 ${
+                  Boolean(value) ? 'bg-primary-500 shadow-sm shadow-primary-500/20' : 'bg-surface-200 dark:bg-surface-700'
                 }`}
-              />
-            </button>
-            <span className="text-sm font-medium text-surface-500 dark:text-surface-300 group-hover:text-surface-50 dark:group-hover:text-white transition-colors">
-              {Boolean(value) ? 'Enabled' : 'Disabled'}
-            </span>
-          </label>
+              >
+                <span
+                  className={`absolute top-0.5 left-0.5 w-5 h-5 rounded-full bg-white shadow-md transition-transform duration-200 ${
+                    Boolean(value) ? 'translate-x-6' : 'translate-x-0'
+                  }`}
+                />
+              </button>
+              <span className="text-sm font-bold text-surface-500 dark:text-surface-300 group-hover:text-surface-50 dark:group-hover:text-white transition-colors">
+                {Boolean(value) ? 'Enabled' : 'Disabled'}
+              </span>
+            </label>
+          </div>
         );
 
       case 'date':
