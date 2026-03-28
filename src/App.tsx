@@ -23,7 +23,8 @@ function AppContent() {
     (values: FormValues) => {
       addEntry(values);
       showToast('Entry added successfully!', 'success');
-      console.log('Form submitted:', JSON.stringify(values, null, 2));
+      console.log('🚀 SUBMITTED FORM DATA:', values);
+      console.table(values);
     },
     [addEntry, showToast],
   );
