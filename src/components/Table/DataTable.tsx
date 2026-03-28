@@ -181,10 +181,10 @@ export function DataTable({ config, data, onDeleteRow }: DataTableProps) {
                   >
                     <div className="flex items-center gap-2">
                       {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                      {header.column.getIsSorted() === 'asc' && <span className="text-primary-500 text-sm animate-in fade-in slide-in-from-bottom-1 duration-200">↑</span>}
-                      {header.column.getIsSorted() === 'desc' && <span className="text-primary-500 text-sm animate-in fade-in slide-in-from-top-1 duration-200">↓</span>}
+                      {header.column.getIsSorted() === 'asc' && <span className="text-primary-600 dark:text-primary-400 text-sm animate-in fade-in slide-in-from-bottom-1 duration-200">↑</span>}
+                      {header.column.getIsSorted() === 'desc' && <span className="text-primary-600 dark:text-primary-400 text-sm animate-in fade-in slide-in-from-top-1 duration-200">↓</span>}
                       {header.column.getCanSort() && !header.column.getIsSorted() && (
-                        <span className="text-surface-400 dark:text-surface-600 text-xs opacity-50">⇅</span>
+                        <span className="text-surface-500/60 dark:text-surface-400/50 text-xs">⇅</span>
                       )}
                     </div>
                   </th>
