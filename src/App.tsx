@@ -38,30 +38,29 @@ function AppContent() {
 
   return (
     <Layout>
-      {/* Hero */}
       <div className="text-center py-2">
-        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-300 text-xs font-semibold border border-primary-500/15 mb-5">
-          <span className="w-1.5 h-1.5 rounded-full bg-primary-400 animate-pulse" />
+        <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary-500/10 text-primary-600 dark:text-primary-300 text-xs font-bold border border-primary-500/15 mb-5 shadow-sm">
+          <span className="w-1.5 h-1.5 rounded-full bg-primary-500 animate-pulse" />
           Configuration-Driven Architecture
         </div>
-        <h1 className="text-4xl md:text-5xl font-extrabold font-display text-white tracking-tight leading-tight">
+        <h1 className="text-4xl md:text-6xl font-extrabold font-display text-surface-50 tracking-tight leading-tight">
           Dynamic{' '}
-          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-400 via-primary-300 to-accent-400">
+          <span className="text-transparent bg-clip-text bg-gradient-to-r from-primary-600 via-primary-500 to-accent-600 dark:from-primary-400 dark:via-primary-300 dark:to-accent-400">
             Form & Table
           </span>{' '}
           Engine
         </h1>
-        <p className="mt-4 text-surface-400 max-w-xl mx-auto text-base leading-relaxed">
+        <p className="mt-6 text-surface-500 dark:text-surface-400 max-w-2xl mx-auto text-base md:text-lg leading-relaxed font-medium">
           Add entries with the form, view them in the table below. Modify JSON schemas to change UI without touching components.
         </p>
-        <div className="flex items-center justify-center gap-5 mt-6">
+        <div className="flex items-center justify-center gap-6 mt-8">
           {[
-            { label: `${userFormSchema.fields.length} Fields`, color: 'bg-primary-400' },
-            { label: `${userTableConfig.columns.length} Columns`, color: 'bg-accent-400' },
-            { label: `${state.data.length} Records`, color: 'bg-warning-400' },
+            { label: `${userFormSchema.fields.length} Fields`, color: 'bg-primary-500' },
+            { label: `${userTableConfig.columns.length} Columns`, color: 'bg-accent-500' },
+            { label: `${state.data.length} Records`, color: 'bg-warning-500' },
           ].map((stat) => (
-            <div key={stat.label} className="flex items-center gap-2 text-xs text-surface-400">
-              <span className={`w-2 h-2 rounded-full ${stat.color}`} />
+            <div key={stat.label} className="flex items-center gap-2.5 text-xs font-bold text-surface-500 dark:text-surface-400 uppercase tracking-wider">
+              <span className={`w-2.5 h-2.5 rounded-full ${stat.color} shadow-sm`} />
               {stat.label}
             </div>
           ))}
