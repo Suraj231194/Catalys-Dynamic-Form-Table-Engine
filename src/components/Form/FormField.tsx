@@ -189,16 +189,19 @@ export function FormField({
               value={String(value)}
               onChange={(e) => onChange(field.name, e.target.value)}
               onBlur={() => onBlur(field.name)}
+              onFocus={(e) => {
+                try {
+                  (e.target as any).showPicker();
+                } catch (err) {}
+              }}
               onClick={(e) => {
                 try {
                   (e.currentTarget as any).showPicker();
-                } catch (err) {
-                  // Fallback for older browsers
-                }
+                } catch (err) {}
               }}
               className={`${inputBase} cursor-pointer dark:[color-scheme:dark] [color-scheme:light] pr-10`}
             />
-            <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-surface-400 group-hover/date:text-primary-500 transition-colors">
+            <div className="absolute right-3.5 top-1/2 -translate-y-1/2 pointer-events-none text-surface-500 dark:text-surface-400 group-hover/date:text-primary-500 transition-colors">
               <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
                 <path strokeLinecap="round" strokeLinejoin="round" d="M6.75 3v2.25M17.25 3v2.25M3 18.75V7.5a2.25 2.25 0 012.25-2.25h13.5A2.25 2.25 0 0121 7.5v11.25m-18 0A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75m-18 0v-7.5A2.25 2.25 0 015.25 9h13.5A2.25 2.25 0 0121 11.25v7.5" />
               </svg>
@@ -206,12 +209,15 @@ export function FormField({
             <style>
               {`
                 #${fieldId}::-webkit-calendar-picker-indicator {
-                  opacity: 0;
                   position: absolute;
-                  right: 0;
-                  width: 30px;
+                  left: 0;
+                  top: 0;
+                  width: 100%;
                   height: 100%;
+                  margin: 0;
+                  padding: 0;
                   cursor: pointer;
+                  opacity: 0;
                 }
               `}
             </style>
