@@ -157,7 +157,7 @@ export function FormField({
 
       case 'checkbox':
         return (
-          <div className={`${inputBase} flex items-center h-[50px] !py-0`}>
+          <div className="w-full h-[50px] px-4 flex items-center bg-surface-900 rounded-xl bg-transparent dark:bg-transparent">
             <label htmlFor={fieldId} className="inline-flex items-center gap-3 cursor-pointer group select-none">
               <button
                 id={fieldId}
