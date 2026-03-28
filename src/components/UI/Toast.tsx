@@ -21,9 +21,9 @@ export function Toast({ message, type = 'success', visible }: ToastProps) {
   if (!show) return null;
 
   const styles: Record<string, string> = {
-    success: 'bg-accent-500/15 text-accent-300 border-accent-500/25',
-    error: 'bg-danger-500/15 text-danger-300 border-danger-500/25',
-    info: 'bg-primary-500/15 text-primary-300 border-primary-500/25',
+    success: 'bg-accent-50 dark:bg-accent-500/15 text-accent-600 dark:text-accent-300 border-accent-500/20 dark:border-accent-500/25',
+    error: 'bg-danger-50 dark:bg-danger-500/15 text-danger-600 dark:text-danger-300 border-danger-500/20 dark:border-danger-500/25',
+    info: 'bg-primary-50 dark:bg-primary-500/15 text-primary-600 dark:text-primary-300 border-primary-500/20 dark:border-primary-500/25',
   };
 
   return (

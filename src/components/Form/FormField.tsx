@@ -47,11 +47,11 @@ export function FormField({
 
   const inputBase = [
     'w-full px-4 py-3 rounded-xl text-sm',
-    'bg-surface-800/70 border',
-    'text-white placeholder:text-surface-500',
+    'bg-surface-900 border shadow-sm dark:shadow-none',
+    'text-surface-50 placeholder:text-surface-500',
     'outline-none transition-all duration-200',
     'focus:ring-2 focus:ring-offset-0',
-    'hover:border-surface-500',
+    'hover:border-surface-600 dark:hover:border-surface-500',
     hasError
       ? 'border-danger-500/60 focus:ring-danger-500/30 focus:border-danger-400'
       : 'border-surface-700/80 focus:ring-primary-500/30 focus:border-primary-500',
@@ -82,7 +82,20 @@ export function FormField({
             max="100"
             value={String(value)}
             placeholder={field.placeholder ?? `Enter ${field.label.toLowerCase()}`}
-            onChange={(e) => onChange(field.name, e.target.value)}
+            onChange={(e) => {
+              const val = e.target.value;
+              if (val === '') {
+                onChange(field.name, '');
+                return;
+              }
+              const num = parseInt(val, 10);
+              // Strict clamping: prevent typing values outside 0-100
+              if (field.name === 'age') {
+                if (num > 100) return;
+                if (num < 0) return;
+              }
+              onChange(field.name, val);
+            }}
             onBlur={() => onBlur(field.name)}
             className={inputBase}
           />
@@ -98,7 +111,7 @@ export function FormField({
               onBlur={() => onBlur(field.name)}
               className={`${inputBase} flex items-center justify-between text-left cursor-pointer`}
             >
-              <span className={!value ? 'text-surface-500' : 'text-white'}>
+              <span className={!value ? 'text-surface-500' : 'text-surface-50'}>
                 {value ? String(value) : `Select ${field.label.toLowerCase()}`}
               </span>
               <svg 
@@ -113,7 +126,7 @@ export function FormField({
             </button>
             
             {isSelectOpen && (
-              <div className="absolute left-0 right-0 top-full mt-2 z-50 rounded-xl bg-surface-800 border border-surface-700 shadow-2xl shadow-black/40 p-1.5 animate-in fade-in zoom-in duration-150">
+              <div className="absolute left-0 right-0 top-full mt-2 z-50 rounded-xl bg-surface-950 dark:bg-surface-800 border border-surface-700 shadow-2xl shadow-black/10 dark:shadow-black/40 p-1.5 animate-in fade-in zoom-in duration-150">
                 <div 
                   className="px-3 py-2 text-[10px] font-bold uppercase tracking-wider text-surface-500 border-b border-surface-700/50 mb-1"
                 >
@@ -130,8 +143,8 @@ export function FormField({
                     className={`
                       w-full text-left px-3 py-2.5 rounded-lg text-sm transition-colors cursor-pointer
                       ${value === opt 
-                        ? 'bg-primary-500/20 text-primary-300 font-medium' 
-                        : 'text-surface-300 hover:bg-surface-700 hover:text-white'}
+                        ? 'bg-primary-500/10 dark:bg-primary-500/20 text-primary-600 dark:text-primary-300 font-bold' 
+                        : 'text-surface-600 dark:text-surface-300 hover:bg-surface-100 dark:hover:bg-surface-700 hover:text-surface-50 dark:hover:text-white'}
                     `}
                   >
                     {opt}
@@ -152,7 +165,7 @@ export function FormField({
               aria-checked={Boolean(value)}
               onClick={() => onChange(field.name, !value)}
               className={`relative w-12 h-7 rounded-full transition-colors duration-200 focus:outline-none focus:ring-2 focus:ring-primary-500/30 focus:ring-offset-0 ${
-                Boolean(value) ? 'bg-primary-500' : 'bg-surface-700'
+                Boolean(value) ? 'bg-primary-500 shadow-sm shadow-primary-500/20' : 'bg-surface-200 dark:bg-surface-700'
               }`}
             >
               <span
@@ -161,7 +174,7 @@ export function FormField({
                 }`}
               />
             </button>
-            <span className="text-sm text-surface-300 group-hover:text-white transition-colors">
+            <span className="text-sm font-medium text-surface-500 dark:text-surface-300 group-hover:text-surface-50 dark:group-hover:text-white transition-colors">
               {Boolean(value) ? 'Enabled' : 'Disabled'}
             </span>
           </label>
@@ -175,7 +188,7 @@ export function FormField({
             value={String(value)}
             onChange={(e) => onChange(field.name, e.target.value)}
             onBlur={() => onBlur(field.name)}
-            className={`${inputBase} cursor-pointer [color-scheme:dark]`}
+            className={`${inputBase} cursor-pointer dark:[color-scheme:dark] [color-scheme:light]`}
           />
         );
 
@@ -185,23 +198,23 @@ export function FormField({
   };
 
   return (
-    <div className="space-y-2">
+    <div className="space-y-2.5">
       {field.type !== 'checkbox' ? (
-        <label htmlFor={fieldId} className="flex items-center gap-1.5 text-sm font-medium text-surface-300">
+        <label htmlFor={fieldId} className="flex items-center gap-1.5 text-sm font-bold text-surface-600 dark:text-surface-300 transition-colors">
           {field.label}
-          {field.required && <span className="text-danger-400 text-xs">*</span>}
+          {field.required && <span className="text-danger-500 dark:text-danger-400 text-xs">*</span>}
         </label>
       ) : (
-        <span className="block text-sm font-medium text-surface-300 mb-1">
+        <span className="block text-sm font-bold text-surface-600 dark:text-surface-300 mb-1 transition-colors">
           {field.label}
-          {field.required && <span className="text-danger-400 text-xs ml-1">*</span>}
+          {field.required && <span className="text-danger-500 dark:text-danger-400 text-xs ml-1">*</span>}
         </span>
       )}
 
       {renderInput()}
 
       {hasError && (
-        <p className="flex items-center gap-1.5 text-xs text-danger-400">
+        <p className="flex items-center gap-1.5 text-xs font-medium text-danger-500 dark:text-danger-400 mt-1.5 animate-in slide-in-from-top-1">
           <svg className="w-3.5 h-3.5 shrink-0" fill="currentColor" viewBox="0 0 20 20">
             <path
               fillRule="evenodd"

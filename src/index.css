@@ -33,9 +33,9 @@
   --font-display: 'Outfit', 'Inter', ui-sans-serif, system-ui, sans-serif;
 
   /* Theme-aware variables - Default (Light) */
-  --color-surface-50: #020617;
-  --color-surface-100: #0f172a;
-  --color-surface-200: #1e293b;
+  --color-surface-50: #0f172a;
+  --color-surface-100: #1e293b;
+  --color-surface-200: #334155;
   --color-surface-300: #475569;
   --color-surface-400: #64748b;
   --color-surface-500: #94a3b8;
