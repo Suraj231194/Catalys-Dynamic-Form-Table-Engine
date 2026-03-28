@@ -122,7 +122,7 @@ export function DataTable({ config, data, onDeleteRow }: DataTableProps) {
         <div className="relative">
           <button
             onClick={() => setShowColumnMenu(!showColumnMenu)}
-            className="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface-950 dark:bg-surface-800/70 border border-surface-700/80 text-surface-600 dark:text-surface-300 text-sm font-bold hover:bg-surface-100 dark:hover:bg-surface-700/70 hover:text-surface-50 dark:hover:text-white hover:border-surface-600 transition-all duration-200 cursor-pointer shadow-sm dark:shadow-none"
+            className="w-full sm:w-auto inline-flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl bg-surface-950 dark:bg-surface-800/70 border border-surface-700/80 text-surface-600 dark:text-surface-300 text-sm font-bold hover:bg-surface-100 dark:hover:bg-surface-700/70 hover:text-surface-50 dark:hover:text-white hover:border-surface-600 transition-all duration-200 cursor-pointer shadow-sm dark:shadow-none"
           >
             <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 4a1 1 0 011-1h16a1 1 0 011 1v2.586a1 1 0 01-.293.707l-6.414 6.414a1 1 0 00-.293.707V17l-4 4v-6.586a1 1 0 00-.293-.707L3.293 7.293A1 1 0 013 6.586V4z" />
@@ -160,14 +160,14 @@ export function DataTable({ config, data, onDeleteRow }: DataTableProps) {
         </div>
 
         {/* Record count */}
-        <div className="px-3 py-1.5 rounded-lg bg-primary-500/10 text-primary-600 dark:text-primary-300 text-xs font-black border border-primary-500/15 uppercase tracking-wider">
+        <div className="hidden sm:block px-3 py-1.5 rounded-lg bg-primary-500/10 text-primary-600 dark:text-primary-300 text-xs font-black border border-primary-500/15 uppercase tracking-wider">
           {table.getFilteredRowModel().rows.length} {table.getFilteredRowModel().rows.length !== 1 ? 'Records' : 'Record'}
         </div>
       </div>
 
       {/* Table */}
       <div className="overflow-x-auto rounded-xl border border-surface-800/80 bg-surface-950/30 dark:bg-surface-900/30 backdrop-blur-sm shadow-inner shadow-black/[0.02]">
-        <table className="w-full text-sm">
+        <table className="w-full min-w-max text-sm">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
               <tr key={headerGroup.id} className="border-b border-surface-800/80">
@@ -175,7 +175,7 @@ export function DataTable({ config, data, onDeleteRow }: DataTableProps) {
                   <th
                     key={header.id}
                     onClick={header.column.getCanSort() ? header.column.getToggleSortingHandler() : undefined}
-                    className={`px-5 py-4 text-left text-[10px] font-black uppercase tracking-[0.1em] text-surface-500 dark:text-surface-400 bg-surface-100/10 dark:bg-surface-900/60 ${
+                    className={`px-3 py-3 md:px-5 md:py-4 text-left text-[10px] font-black uppercase tracking-[0.1em] text-surface-500 dark:text-surface-400 bg-surface-100/10 dark:bg-surface-900/60 whitespace-nowrap ${
                       header.column.getCanSort() ? 'cursor-pointer select-none hover:text-primary-600 dark:hover:text-surface-200 transition-colors' : ''
                     }`}
                   >
@@ -213,7 +213,7 @@ export function DataTable({ config, data, onDeleteRow }: DataTableProps) {
               table.getRowModel().rows.map((row) => (
                 <tr key={row.id} className="hover:bg-surface-100/50 dark:hover:bg-surface-800/30 transition-all duration-150 group">
                   {row.getVisibleCells().map((cell) => (
-                    <td key={cell.id} className="px-5 py-4 text-surface-200 dark:text-surface-200 whitespace-nowrap font-medium text-sm transition-colors group-hover:text-surface-50">
+                    <td key={cell.id} className="px-3 py-3 md:px-5 md:py-4 text-surface-200 dark:text-surface-200 whitespace-nowrap font-medium text-[13px] md:text-sm transition-colors group-hover:text-surface-50">
                       {flexRender(cell.column.columnDef.cell, cell.getContext())}
                     </td>
                   ))}

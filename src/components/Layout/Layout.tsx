@@ -17,7 +17,7 @@ export function Layout({ children }: LayoutProps) {
 
       {/* Header */}
       <header className="sticky top-0 z-50 border-b border-surface-800/60 bg-surface-950/80 backdrop-blur-xl">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
             <div className="flex items-center gap-3">
               <div className="flex items-center justify-center w-9 h-9 rounded-xl bg-gradient-to-br from-primary-500 to-primary-700 shadow-lg shadow-primary-600/30">
@@ -47,13 +47,13 @@ export function Layout({ children }: LayoutProps) {
       </header>
 
       {/* Main Content */}
-      <main className="relative max-w-6xl mx-auto px-6 lg:px-8 py-10 space-y-16">
+      <main className="relative max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 md:py-10 space-y-12 md:space-y-16">
         {children}
       </main>
 
       {/* Footer */}
       <footer className="relative border-t border-surface-800/50 mt-12 bg-surface-950/30 backdrop-blur-sm">
-        <div className="max-w-6xl mx-auto px-6 lg:px-8 py-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-surface-400">
             <p className="font-medium">Built with React 19 · TypeScript · TailwindCSS 4 · TanStack Table</p>
             <div className="flex items-center gap-4">
